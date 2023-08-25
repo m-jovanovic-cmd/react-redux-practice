@@ -3,11 +3,11 @@ import classes from './Products.module.css';
 import { useSelector } from 'react-redux';
 
 const Products = (props) => {
-  const availableProducts = useSelector((state) => state.availableItems.items)
+  const productsData = useSelector((state) => state.cart.items)
 
   const products = (
     <ul>
-      {availableProducts.map((product) => (
+      {productsData.map((product) => (
         <ProductItem 
           key={product.id}
           id={product.id}
