@@ -1,15 +1,25 @@
 import { useDispatch } from 'react-redux';
 
-import { cartActions } from '../../store/cart';
+import { cartActions } from '../../store/cart-slice';
 import Card from '../UI/Card';
 import classes from './ProductItem.module.css';
 
 const ProductItem = (props) => {
   const dispatch = useDispatch();
-  const { title, price, description } = props;
 
-  const addToCartHandler = (item) => {
-    dispatch(cartActions.addItem(item));
+  const { title, price, description, id } = props;
+
+  const addToCartHandler = () => {
+    // and then send Http request
+    // fetch('firebase-url', { method: 'POST', body: JSON.stringify(newCart) })
+
+    dispatch(
+      cartActions.addItemToCart({
+        id,
+        title,
+        price,
+      })
+    );
   };
 
   return (
@@ -21,7 +31,7 @@ const ProductItem = (props) => {
         </header>
         <p>{description}</p>
         <div className={classes.actions}>
-          <button onClick={() => addToCartHandler(props)}>Add to Cart</button>
+          <button onClick={addToCartHandler}>Add to Cart</button>
         </div>
       </Card>
     </li>
