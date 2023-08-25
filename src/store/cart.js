@@ -2,19 +2,24 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { uiActions } from "./ui";
 
+const initialShit = 
+
 export const fetchCartData = () => {
     return async (dispatch) => {
+        const sendFirst = async () => {
+            await fetch()
+        }
         const fetchData = async () => {
-            const response = await fetch(
-                'https://custom-react-hooks-chapter15-default-rtdb.europe-west1.firebasedatabase.app/cart.json'
-            );
+            const response = await fetch('https://custom-react-hooks-chapter15-default-rtdb.europe-west1.firebasedatabase.app/cart.json', { 
+                method: 'PUT',
+                body: JSON.stringify(initialShit),
+            });
 
             if (!response.ok) {
                 throw new Error("Could not fetch cart data!");
             }
 
             const data = await response.json();
-
             return data;
         };
 
